@@ -19,7 +19,6 @@ char *get_mime_type(char *name) {
   if (strcmp(ext, ".gif") == 0) return "image/gif";
   if (strcmp(ext, ".png") == 0) return "image/png";
   if (strcmp(ext, ".css") == 0) return "text/css";
-  if (strcmp(ext, ".au") == 0) return "audio/basic";
   if (strcmp(ext, ".wav") == 0) return "audio/wav";
   if (strcmp(ext, ".avi") == 0) return "video/x-msvideo";
   if (strcmp(ext, ".mpeg") == 0 || strcmp(ext, ".mpg") == 0) return "video/mpeg";
@@ -92,7 +91,7 @@ int process(FILE *f) {
   fseek(f, 0, SEEK_CUR);
 
   if (strcasecmp(method, "GET") != 0) {
-    send_error(f, 501, "Not supported", NULL, "Method is not supported.");
+    send_error(f, 501, "Not supported", NULL, "Error Method.");
   } else if (stat(path, &statbuf) < 0) {
     send_error(f, 404, "Not Found", NULL, "File not found.");
   } else if (S_ISDIR(statbuf.st_mode)) {
